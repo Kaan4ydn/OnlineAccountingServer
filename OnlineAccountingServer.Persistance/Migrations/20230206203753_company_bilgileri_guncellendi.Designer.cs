@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineAccountingServer.Persistance.Context;
 
@@ -11,9 +12,11 @@ using OnlineAccountingServer.Persistance.Context;
 namespace OnlineAccountingServer.Persistance.Migrations
 {
     [DbContext(typeof(OnlineAccountingDbContext))]
-    partial class OnlineAccountingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230206203753_company_bilgileri_guncellendi")]
+    partial class companybilgileriguncellendi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

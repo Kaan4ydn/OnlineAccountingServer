@@ -1,11 +1,21 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using OnlineAccountingServer.Application.Services.AppServices;
+using OnlineAccountingServer.Domain.AppEntities.Identity;
 using OnlineAccountingServer.Persistance.Context;
+using OnlineAccountingServer.Persistance.Services.AppServices;
 using OnlineAccountingServer.Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<OnlineAccountingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<OnlineAccountingDbContext>();
+
+builder.Services.AddScoped<ICompanyService, CompanyService>();
+
+builder.Services.AddMediatR(typeof(OnlineAccountingServer.Application.AssemblyReference).Assembly);
+builder.Services.AddAutoMapper(typeof(OnlineAccountingServer.Persistance.AssemblyReference).Assembly);
 
 // Add services to the container.
 
